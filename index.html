@@ -1,11 +1,11 @@
 <!--
-GitHub e36drift@web.de Testfile
+GitHub e36drift@web.de Testfile Google Chrom Android and Windows
 -->
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MSx Bluetooth Anzeige/switch Testseite01</title>
+    <title>MSx Bluetooth Anzeige/switch -- Testfile01 Google Chrom Android and Windows</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -60,7 +60,7 @@ GitHub e36drift@web.de Testfile
         </div>
     </div>
     <div class="footer">
-        <p><a href="https://hansdrift.github.io/MSxTest01/">Hans Drift MSx Bluetooth Anzeige/switch Testseite01</a></p>
+        <p><a href="https://hansdrift.github.io/MSxTest01/">Hans Drift MSx Bluetooth Anzeige/switch Testfile01 Google Chrom Android and Windows</a></p>
     </div>
 </body>
 <script>
@@ -87,16 +87,38 @@ GitHub e36drift@web.de Testfile
     //Zus. Infos
     const EcuIdContainer = document.getElementById('EcuId');
 
+
+    /*
+    31.07.2024 generiert unter:
+    https://www.uuidgenerator.net/
+    
+    aefef71a-088f-4d64-8b0a-b7f850207df6
+    4427bd07-29e9-470c-adab-f43d9c6f69b3
+    754b92b1-9280-424c-a967-ef50cb01f85f
+    c51f6137-e763-4617-9c0d-6227c6003080
+    06e6e849-8e8c-4c5d-820f-fadea7a63e47
+    20ae8631-5bf5-41e2-a4cc-835295bcc942
+    0cf407a6-3a4d-4abf-b1c6-b478d6021234
+    faf4416a-3741-4f09-b319-d817a50219b5
+    
+    a4e398e8-46a2-4bc1-9001-f251a475985e
+    bb1393db-fc8f-4177-b98d-1557b1bbface
+    */
+    
     //Define BLE Device Specs
     var deviceName ='MSx';
-    var bleService = '19b10000-e8f2-537e-4f6c-d104768a1214';
-    var ledCharacteristic = '19b10002-e8f2-537e-4f6c-d104768a1214';
-    var sensorCharacteristic= '19b10001-e8f2-537e-4f6c-d104768a1214';
+    var bleService = 'aefef71a-088f-4d64-8b0a-b7f850207df6';
+    var sensorCharacteristic= '4427bd07-29e9-470c-adab-f43d9c6f69b3';
+    var ledCharacteristic = '754b92b1-9280-424c-a967-ef50cb01f85f';
+    
     
     //Neu
-    var sensorCharT1= 'f6c86bc0-6b5d-48ba-95f8-eacbf0c81431';
-    var sensorCharT2= '402ff456-fe9d-4d0c-86c3-ed80bb67f6cd';
-    var sensorCharT3= '89e362da-2fb1-4c2a-8a0f-5088fb1852d3';
+    var sensorCharT1= 'c51f6137-e763-4617-9c0d-6227c6003080';
+    var sensorCharT2= '06e6e849-8e8c-4c5d-820f-fadea7a63e47';
+    var sensorCharT3= '20ae8631-5bf5-41e2-a4cc-835295bcc942';
+    var sensorCharBatt= '0cf407a6-3a4d-4abf-b1c6-b478d6021234';
+    var sensorCharInfo= 'faf4416a-3741-4f09-b319-d817a50219b5';
+    
 
     //Zus. Infos
     var EcuId='MS43x'
