@@ -157,7 +157,6 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
         if (!navigator.bluetooth) {
             console.log('Web Bluetooth API is not available in this browser!');
             bleStateContainer.innerHTML = "Web Bluetooth API is not available in this browser/device!";
-            EcuIdContainer.innerHTML = "Ecu nicht verbunden!";
             return false
         }
         console.log('Web Bluetooth API supported in this browser.');
@@ -173,10 +172,8 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
         })
         .then(device => {
             console.log('Device Selected:', device.name);
-            bleStateContainer.innerHTML = 'Connected to device ' + device.name + ' Test Ecu ' + EcuId;
+            bleStateContainer.innerHTML = 'Connected to device ' + device.name;
             bleStateContainer.style.color = "#24af37";
-            EcuIdContainer.innerHTML = 'Ecu verbunden' + EcuId;
-            EcuIdContainer.style.color = "#24af37";
             device.addEventListener('gattservicedisconnected', onDisconnected);
             //setTimeout(function() {
             //    console.log("Timeout: ");
@@ -417,8 +414,6 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
         console.log('Device Disconnected:', event.target.device.name);
         bleStateContainer.innerHTML = "Device disconnected";
         bleStateContainer.style.color = "#d13a30";
-        EcuIdContainer.innerHTML = 'Ecu nicht verbunden!' + ' Test Ecu ' + EcuId;
-        EcuIdContainer.style.color = "#d13a30";
         connectToDevice();
     }
 
@@ -534,8 +529,6 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
                         console.log("Device Disconnected");
                         bleStateContainer.innerHTML = "Device Disconnected";
                         bleStateContainer.style.color = "#d13a30";
-                        EcuIdContainer.innerHTML = 'Ecu nicht verbunden!' + ' Test Ecu ' + EcuId;
-                        EcuIdContainer.style.color = "#d13a30";
 
                     })
                     .catch(error => {
