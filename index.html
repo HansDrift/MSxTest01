@@ -19,10 +19,10 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
         <div class="card-grid">
             <div class="card">
                 <p>
-                    <button id="connectBleButton" class="connectButton"> Connect MSx</button>
-                    <button id="disconnectBleButton" class="disconnectButton"> Disconnect MSx</button>
+                    <button id="connectBleButton" class="connectButton"> verbinde MSx</button>
+                    <button id="disconnectBleButton" class="disconnectButton"> trenne MSx</button>
                 </p>
-                <p class="gray-label">Bluetooth state: <strong><span id="bleState" style="color:#d13a30;">Disconnected</span></strong></p>
+                <p class="gray-label">Bluetooth status: <strong><span id="bleState" style="color:#d13a30;">getrennt</span></strong></p>
                 <p class="gray-label"><strong><span id="valueInfoContainer" style="color:#2c40b3;"></span></strong></p>            
             </div>
         </div>
@@ -52,14 +52,14 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
             </div>
             
             <div class="card">
-                <h2>Control switch test</h2>
+                <h2>Kontrollschalter test</h2>
                 <button id="onButton" class="onButton">ON</button>
                 <button id="offButton" class="offButton">OFF</button>
                 <p class="gray-label">Last value sent: <span id="valueSent"></span></p>
             </div>
 
             <div class="card">
-                <h2>Counter</h2>
+                <h2>Zähler</h2>
                 <p class="reading"><span id="valueContainer">---</span></p>
                 <p class="gray-label">Last reading: <span id="timestamp"></span></p>
             </div>
@@ -180,7 +180,7 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
         })
         .then(device => {
             console.log('Device Selected:', device.name);
-            bleStateContainer.innerHTML = 'Connected to device ' + device.name;
+            bleStateContainer.innerHTML = 'Verbunden mit ' + device.name;
             bleStateContainer.style.color = "#24af37";
             device.addEventListener('gattservicedisconnected', onDisconnected);
             //setTimeout(function() {
@@ -357,6 +357,7 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
         })*/
         //T3 Ende ---
 
+/*
         //Batt---
         .then(service => {
             if ( bleServiceFound ==0){
@@ -383,7 +384,7 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
             retrievedValueT3.innerHTML = decodedValue;
         })*/
         //Batt Ende ---
-
+/*
         //Info---
         .then(service => {
             if ( bleServiceFound ==0){
@@ -449,13 +450,13 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
                   retrievedValueT1.innerHTML = chars[1];
                 	console.log(" -- T1 " + chars[1]);                	
               }    
-              if (chars[2] == 'T1' ){
+              if (chars[2] == 'T2' ){
                   retrievedValueT2.innerHTML = chars[3];
                 	console.log(" -- T2 " + chars[3]);                	
               }
               if (chars[4] == 'T3' ){
                   retrievedValueT3.innerHTML = chars[5];
-                	console.log(" -- T1 " + chars[5]);                	
+                	console.log(" -- T3 " + chars[5]);                	
               }
               if (chars[6] == 'Batt' ){
                   retrievedValueBatt.innerHTML = chars[7];
@@ -469,7 +470,8 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
             timestampT1Container.innerHTML = getDateTime();
             console.log("sensorCharT1: ", newValueReceived, " ", elemUuid, " ", sensorCharT1);
         break;
-        case sensorCharT2:
+        /*
+		case sensorCharT2:
             //retrievedValueT2.innerHTML = newValueReceived;
             //timestampT2Container.innerHTML = getDateTime();
             console.log("sensorCharT2: ", newValueReceived, " ", elemUuid, " ", sensorCharT2);
@@ -489,6 +491,7 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
             //timestampInfoContainer.innerHTML = getDateTime();
             console.log("sensorCharInfo: ", newValueReceived, " ", elemUuid, " ", sensorCharInfo);
         break;
+		*/
         default:
             console.log("Unknown Characteristic: ", newValueReceived, " ", elemUuid);
         }
