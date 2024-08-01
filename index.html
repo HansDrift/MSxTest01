@@ -22,8 +22,8 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
                     <button id="connectBleButton" class="connectButton"> verbinde MSx</button>
                     <button id="disconnectBleButton" class="disconnectButton"> trenne MSx</button>
                 </p>
-                <p class="gray-label">Bluetooth status: <strong><span id="bleState" style="color:#d13a30;">getrennt</span></strong></p>
-                <p class="gray-label"><strong><span id="valueInfoContainer" style="color:#2c40b3;"></span></strong></p>            
+                <p class="gray-label">Bluetooth status: <strong><span id="bleState" style="color:#d13a30;">Verbindung getrennt</span></strong></p>
+                <p class="gray-label"><strong><span id="valueInfoContainer" style="color:#2c40b3;"></span> Last reading: <span id="timestampInfo"></span></strong></p>            
             </div>
         </div>
         <div class="card-grid">
@@ -48,7 +48,7 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
             <div class="card">
                 <h2>Batteriespannung</h2>
                 <p class="reading"><span id="valueBattContainer">-000.Batt</span> V</p>
-                <p class="gray-label">Last reading: <span id="timestampT3"></span></p>
+                <p class="gray-label">Last reading: <span id="timestampBatt"></span></p>
             </div>
             
             <div class="card">
@@ -421,8 +421,15 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
 
     function onDisconnected(event){
         console.log('Device Disconnected:', event.target.device.name);
-        bleStateContainer.innerHTML = "Device disconnected";
+        bleStateContainer.innerHTML = "Verbindung getrennt";
         bleStateContainer.style.color = "#d13a30";
+        retrievedValueInfo.innerHTML = "---";
+		retrievedValueInfo.innerHTML = "---";
+		retrievedValueT1.innerHTML = "---";
+		retrievedValueT2.innerHTML = "---";
+		retrievedValueT3.innerHTML = "---";
+		retrievedValueBatt.innerHTML = "---";
+        //retrievedValueInfo.style.color = "#d13a30";
         connectToDevice();
     }
 
@@ -448,22 +455,27 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
             var chars = receivedValueT1.split(' ');
               if (chars[0] == 'T1' ){
                   retrievedValueT1.innerHTML = chars[1];
+				  timestampT1Container.innerHTML = getDateTime();
                 	console.log(" -- T1 " + chars[1]);                	
               }    
               if (chars[2] == 'T2' ){
                   retrievedValueT2.innerHTML = chars[3];
+				  timestampT2Container.innerHTML = getDateTime();
                 	console.log(" -- T2 " + chars[3]);                	
               }
               if (chars[4] == 'T3' ){
                   retrievedValueT3.innerHTML = chars[5];
+				  timestampT3Container.innerHTML = getDateTime();
                 	console.log(" -- T3 " + chars[5]);                	
               }
               if (chars[6] == 'Batt' ){
                   retrievedValueBatt.innerHTML = chars[7];
+				  timestampBattContainer.innerHTML = getDateTime();
                 	console.log(" -- Batt " + chars[7]);                	
               } 
               if (chars[8] == 'Info' ){
                   retrievedValueInfo.innerHTML = chars[9];
+				  timestampInfoContainer.innerHTML = getDateTime();
                 	console.log(" -- Info " + chars[9]);                	
               }          
             //retrievedValueT1.innerHTML = receivedValueT1;
@@ -562,9 +574,14 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
                     })
                     .then(() => {
                         console.log("Device Disconnected");
-                        bleStateContainer.innerHTML = "Device Disconnected";
+                        bleStateContainer.innerHTML = "Verbindung getrennt";
                         bleStateContainer.style.color = "#d13a30";
-
+						retrievedValueInfo.innerHTML = "---";
+						retrievedValueT1.innerHTML = "---";
+						retrievedValueT2.innerHTML = "---";
+						retrievedValueT3.innerHTML = "---";
+						retrievedValueBatt.innerHTML = "---";
+						//retrievedValueInfo.style.color = "#d13a30";
                     })
                     .catch(error => {
                         console.log("An error occurred:", error);
