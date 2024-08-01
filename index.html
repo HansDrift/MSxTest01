@@ -138,6 +138,14 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
     var sensorCharBattFound;
     var sensorCharInfoFound;
 
+    //Received
+    var receivedValueCharacteristic;
+    var receivedValueT1;
+    var receivedValueT2;
+    var receivedValueT3;
+    var receivedValueBatt;
+    var receivedValueInfo;
+
     // Connect Button (search for BLE Devices only if BLE is available)
     connectButton.addEventListener('click', (event) => {
         if (isWebBluetoothEnabled()){
@@ -433,28 +441,52 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
             console.log("sensorCharacteristic: ", newValueReceived, " ", elemUuid, " ", sensorCharacteristic);
             break;
         case sensorCharT1:
-            retrievedValueT1.innerHTML = newValueReceived;
+            //Test Mehrere Werte teilen
+            //var receivedValueT1 = 'T1 -10,33 T2 -15,25 T3 95,263 Batt 12,34 Info Mxx2 X06 66,66°C X07 77,77V';
+            receivedValueT1 = newValueReceived;
+            var chars = receivedValueT1.split(' ');
+              if (chars[0] == 'T1' ){
+                  retrievedValueT1.innerHTML = chars[1];
+                	console.log(" -- T1 " + chars[1]);                	
+              }    
+              if (chars[2] == 'T1' ){
+                  retrievedValueT2.innerHTML = chars[3];
+                	console.log(" -- T2 " + chars[3]);                	
+              }
+              if (chars[4] == 'T3' ){
+                  retrievedValueT3.innerHTML = chars[5];
+                	console.log(" -- T1 " + chars[5]);                	
+              }
+              if (chars[6] == 'Batt' ){
+                  retrievedValueBatt.innerHTML = chars[7];
+                	console.log(" -- Batt " + chars[7]);                	
+              } 
+              if (chars[8] == 'Info' ){
+                  retrievedValueInfo.innerHTML = chars[9];
+                	console.log(" -- Info " + chars[9]);                	
+              }          
+            //retrievedValueT1.innerHTML = receivedValueT1;
             timestampT1Container.innerHTML = getDateTime();
             console.log("sensorCharT1: ", newValueReceived, " ", elemUuid, " ", sensorCharT1);
         break;
         case sensorCharT2:
-            retrievedValueT2.innerHTML = newValueReceived;
-            timestampT2Container.innerHTML = getDateTime();
+            //retrievedValueT2.innerHTML = newValueReceived;
+            //timestampT2Container.innerHTML = getDateTime();
             console.log("sensorCharT2: ", newValueReceived, " ", elemUuid, " ", sensorCharT2);
         break;
         case sensorCharT3:
-            retrievedValueT3.innerHTML = newValueReceived;
-            timestampT3Container.innerHTML = getDateTime();
+            //retrievedValueT3.innerHTML = newValueReceived;
+            //timestampT3Container.innerHTML = getDateTime();
             console.log("sensorCharT3: ", newValueReceived, " ", elemUuid, " ", sensorCharT3);
         break;
         case sensorCharBatt:
-            retrievedValueBatt.innerHTML = newValueReceived;
-            timestampBattContainer.innerHTML = getDateTime();
+            //retrievedValueBatt.innerHTML = newValueReceived;
+            //timestampBattContainer.innerHTML = getDateTime();
             console.log("sensorCharBatt: ", newValueReceived, " ", elemUuid, " ", sensorCharBatt);
         break;
         case sensorCharInfo:
-            retrievedValueInfo.innerHTML = newValueReceived;
-            timestampInfoContainer.innerHTML = getDateTime();
+            //retrievedValueInfo.innerHTML = newValueReceived;
+            //timestampInfoContainer.innerHTML = getDateTime();
             console.log("sensorCharInfo: ", newValueReceived, " ", elemUuid, " ", sensorCharInfo);
         break;
         default:
