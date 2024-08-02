@@ -450,27 +450,64 @@ GitHub e36drift@web.de Testfile Google Chrom Android and Windows
             break;
         case sensorCharT1:
             //Test Mehrere Werte teilen
-            //var receivedValueT1 = 'T1 -10,33 T2 -15,25 T3 95,263 Batt 12,34 Info Mxx2 X06 66,66°C X07 77,77V';
+            //var receivedValueT1 = 'T1 110,33 T2 110,25 T3 141,263 Batt 16,70 Info Mxx2 X06 66,66°C X07 77,77V';
             receivedValueT1 = newValueReceived;
             var chars = receivedValueT1.split(' ');
               if (chars[0] == 'T1' ){
                   retrievedValueT1.innerHTML = chars[1];
 				  timestampT1Container.innerHTML = getDateTime();
+				  if ( parseInt(chars[1]) > 60 ){						
+						console.log(" >20 " + chars[1]);
+						retrievedValueT1.style.color = "#d13a30";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  } else{
+						console.log(" Else " + chars[1]);
+						retrievedValueT1.style.color = "#000000";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  }
                 	console.log(" -- T1 " + chars[1]);                	
               }    
               if (chars[2] == 'T2' ){
                   retrievedValueT2.innerHTML = chars[3];
 				  timestampT2Container.innerHTML = getDateTime();
+				  if ( parseInt(chars[3]) < 70 ){
+						console.log(" <10 " + chars[3]);
+						retrievedValueT2.style.color = "#2c40b3";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  } else if ( parseInt(chars[3]) > 107 ){						
+						console.log(" >20 " + chars[3]);
+						retrievedValueT2.style.color = "#d13a30";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  } else{
+						console.log(" Else " + chars[3]);
+						retrievedValueT2.style.color = "#000000";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  }
                 	console.log(" -- T2 " + chars[3]);                	
               }
               if (chars[4] == 'T3' ){
                   retrievedValueT3.innerHTML = chars[5];
 				  timestampT3Container.innerHTML = getDateTime();
+				  if ( parseInt(chars[5]) < 70 ){
+						console.log(" <10 " + chars[5]);
+						retrievedValueT3.style.color = "#2c40b3";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  } else if ( parseInt(chars[5]) > 140 ){						
+						console.log(" >20 " + chars[5]);
+						retrievedValueT3.style.color = "#d13a30";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  } else{
+						console.log(" Else " + chars[5]);
+						retrievedValueT3.style.color = "#000000";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  }
                 	console.log(" -- T3 " + chars[5]);                	
               }
               if (chars[6] == 'Batt' ){
                   retrievedValueBatt.innerHTML = chars[7];
 				  timestampBattContainer.innerHTML = getDateTime();
+				  if ( parseInt(chars[7]) < 12 ){
+						console.log(" <10 " + chars[7]);
+						retrievedValueBatt.style.color = "#d13a30";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  } else if ( parseInt(chars[7]) > 15 ){						
+						console.log(" >20 " + chars[7]);
+						retrievedValueBatt.style.color = "#d13a30";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  } else{
+						console.log(" Else " + chars[7]);
+						retrievedValueBatt.style.color = "#000000";    // "#d13a30"; rot  "#2c40b3"; blau "#000000"; schwarz
+				  }
                 	console.log(" -- Batt " + chars[7]);                	
               } 
               if (chars[8] == 'Info' ){
